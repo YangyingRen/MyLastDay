@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class DragWindow : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler
+public class DragWindow : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragHandler, IPointerDownHandler
 {
     public RectTransform Window;
     // Start is called before the first frame update
@@ -20,6 +20,11 @@ public class DragWindow : MonoBehaviour,IBeginDragHandler,IEndDragHandler,IDragH
     }
     public void OnEndDrag(PointerEventData eventData){
 
+    }
+
+    public void OnPointerDown(PointerEventData eventData){
+        int len=transform.parent.childCount;
+        transform.SetSiblingIndex(len-1);
     }
 
 

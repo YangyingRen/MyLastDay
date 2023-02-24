@@ -5,11 +5,9 @@ using UnityEngine.UI;
 
 public class Email : MonoBehaviour
 {
-    public Text From,Date,To,Subject;
-    public Transform Content;
+    private Transform Content;
     public string[] EmailDetail;
     public GameObject EmailName;
-    public ScrollRect newScrollContent;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,14 +21,15 @@ public class Email : MonoBehaviour
     }
 
     public void emailContent(){
-    From.text=EmailDetail[0];
-    Date.text=EmailDetail[1];
-    To.text=EmailDetail[2];
-    Subject.text=EmailDetail[3];
+    GameObject.Find("From").GetComponent<Text>().text=EmailDetail[0];
+    GameObject.Find("Date").GetComponent<Text>().text=EmailDetail[1];
+    GameObject.Find("To").GetComponent<Text>().text=EmailDetail[2];
+    GameObject.Find("Subject").GetComponent<Text>().text=EmailDetail[3];
+    Content=GameObject.Find("emailText").GetComponent<RectTransform>();
     if(Content.childCount!=0){
     Destroy(Content.GetChild(0).gameObject);
     }
     GameObject newContent=Instantiate(EmailName,Content);
-
-    newScrollContent.content=newContent.GetComponent<RectTransform>();
+    GameObject.Find("emailContent").GetComponent<ScrollRect>().content=newContent.GetComponent<RectTransform>();
+    gameObject.GetComponent<Text>().fontStyle=FontStyle.Normal;
 }}

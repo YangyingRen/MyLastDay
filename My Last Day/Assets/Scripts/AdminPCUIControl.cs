@@ -35,6 +35,8 @@ public class AdminPCUIControl : MonoBehaviour
     }
     public void OpenApp(){
         Application.SetActive(true);
+        int len=Application.transform.parent.childCount;
+        Application.transform.SetSiblingIndex(len-1);
     }
     public void CloseApp(){
         Application.SetActive(false);
